@@ -35,10 +35,13 @@ class NameWithPhones:
         print("Name :", p_name)
         # what about phone, it should be at least 10 numbers and maximum of 15
         if p_phone > 5 and len(str(p_phone)) < 15:
-
+          
           # self.nameWithPhones[arrayLength] = p_name
-          # self.nameWithPhones[arrayLength + 1] = p_phone
-          self.nameWithPhones.append(p_name)
+          # self.nameWithPhones[arrayLength + 1] = p_phone # This does not Work
+          print("Length before", arrayLength)     #Because append include doubling array size
+          self.nameWithPhones.append(p_name)      #When we want to add element while out of bounds
+          print("Length before", arrayLength)
+
           self.nameWithPhones.append(p_phone)
 
     
@@ -61,6 +64,20 @@ class NameWithPhones:
       i += 2
   def printPhonesList(self):
     print(self.nameWithPhones)
+  
+  # Search for phone Number Through Name Property, When user enter value let us return all possible Name with numbers. Example: input: A -> output: Abdallah, 078532621  New Line Ahmad, 077553(phone)
+
+  def searchForPhoneNumbersThroughNames(self, input):
+    outputNums = 0
+    arrayLength = len(self.nameWithPhones)
+    i = 0
+    while i < arrayLength:
+      if self.nameWithPhones[i] == input:
+        print(self.nameWithPhones[i], self.nameWithPhones[i+1])
+        outputNums += 1
+      i += 2
+    if outputNums == 0:
+      print("Not exist")
 
 
 newPhonesList = NameWithPhones()
@@ -71,4 +88,6 @@ newPhonesList.addNameWithPhone("Ali", 785326279)
 # newPhonesList.addNameWithPhone("Ali", 78a26279)
 
 newPhonesList.printPhonesList()
+
+newPhonesList.searchForPhoneNumbersThroughNames("Abdallah")
   
