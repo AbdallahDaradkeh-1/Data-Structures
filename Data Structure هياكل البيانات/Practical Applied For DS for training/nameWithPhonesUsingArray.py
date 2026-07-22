@@ -38,10 +38,8 @@ class NameWithPhones:
           
           # self.nameWithPhones[arrayLength] = p_name
           # self.nameWithPhones[arrayLength + 1] = p_phone # This does not Work
-          print("Length before", arrayLength)     #Because append include doubling array size
+                                                   #Because append include doubling array size
           self.nameWithPhones.append(p_name)      #When we want to add element while out of bounds
-          print("Length before", arrayLength)
-
           self.nameWithPhones.append(p_phone)
 
     
@@ -79,6 +77,34 @@ class NameWithPhones:
     if outputNums == 0:
       print("Not exist")
 
+  def searchForPhoneNumbersListThroughNames(self, input): #This gives all phone numbers that are 
+    outputNums = 0                                        #Similar to the input, If the input is: a
+    arrayLength = len(self.nameWithPhones)                #For example: output will be: Adam, Ahmad,
+    i = 0                                              #And even: Taher. But the priority to A at
+    while i < arrayLength:                          #First
+      if input.lower() in self.nameWithPhones[i].lower():
+        print(self.nameWithPhones[i], self.nameWithPhones[i+1])
+        outputNums += 1
+      i += 2
+    if outputNums == 0:
+      print("Not exist")
+  def deleteFromNameWithPhonesUsingName(self, input):
+    # If input is exactly equal to one element, it will be deleted
+    arrayLength = len(self.nameWithPhones)
+    i = 0
+    outputNumbers = 0
+    while i < arrayLength:
+      if input.lower() == str(self.nameWithPhones[i]).lower():
+        deletedName = self.nameWithPhones.pop(i)
+        deletedPhone = self.nameWithPhones.pop(i)
+        
+        print(deletedName, deletedPhone, "Has Been Deleted Successfully")
+        return
+        outputNumbers += 1
+      i += 2
+    if outputNumbers == 0:
+      print("No Such Element Exist")
+
 
 newPhonesList = NameWithPhones()
 
@@ -89,5 +115,20 @@ newPhonesList.addNameWithPhone("Ali", 785326279)
 
 newPhonesList.printPhonesList()
 
-newPhonesList.searchForPhoneNumbersThroughNames("Abdallah")
-  
+newPhonesList.searchForPhoneNumbersListThroughNames("a")
+
+input = "Ahmad"
+
+print(input.lower())
+
+print("After Using Delete Method")
+
+newPhonesList.deleteFromNameWithPhonesUsingName("Abdallah")
+print("Printed")
+newPhonesList.printPhonesList()
+
+print("After Using Delete Method Second Time")
+
+newPhonesList.deleteFromNameWithPhonesUsingName("Ahmad")
+
+newPhonesList.printPhonesList()
