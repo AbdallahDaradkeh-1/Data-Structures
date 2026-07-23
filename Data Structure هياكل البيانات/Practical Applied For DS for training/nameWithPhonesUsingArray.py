@@ -92,7 +92,6 @@ class NameWithPhones:
     # If u_input is exactly equal to one element, it will be deleted
     arrayLength = len(self.nameWithPhones)
     i = 0
-    outputNumbers = 0
     while i < arrayLength:
       if u_input.lower() == str(self.nameWithPhones[i]).lower():
         deletedName = self.nameWithPhones.pop(i)
@@ -100,9 +99,7 @@ class NameWithPhones:
         
         print(deletedName, deletedPhone, "Has Been Deleted Successfully")
         return
-        outputNumbers += 1
       i += 2
-    if outputNumbers == 0:
       print("No Such Element Exist")
   def deleteFromNameWithPhonesUsingNameLikely(self, u_input):
     # User enter input, if there is no such exact element, show the elements that look like the user
@@ -129,7 +126,6 @@ class NameWithPhones:
       
         similarResultsIndecies.append(i)
       i += 2
-    print(similarResultsIndecies)
 
     chosenNumber = int(input())
     
