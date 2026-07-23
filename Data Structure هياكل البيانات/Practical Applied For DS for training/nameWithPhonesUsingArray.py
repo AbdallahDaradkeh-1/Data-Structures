@@ -63,38 +63,38 @@ class NameWithPhones:
   def printPhonesList(self):
     print(self.nameWithPhones)
   
-  # Search for phone Number Through Name Property, When user enter value let us return all possible Name with numbers. Example: input: A -> output: Abdallah, 078532621  New Line Ahmad, 077553(phone)
+  # Search for phone Number Through Name Property, When user enter value let us return all possible Name with numbers. Example: u_input: A -> output: Abdallah, 078532621  New Line Ahmad, 077553(phone)
 
-  def searchForPhoneNumbersThroughNames(self, input):
+  def searchForPhoneNumbersThroughNames(self, u_input):
     outputNums = 0
     arrayLength = len(self.nameWithPhones)
     i = 0
     while i < arrayLength:
-      if self.nameWithPhones[i] == input:
+      if self.nameWithPhones[i] == u_input:
         print(self.nameWithPhones[i], self.nameWithPhones[i+1])
         outputNums += 1
       i += 2
     if outputNums == 0:
       print("Not exist")
 
-  def searchForPhoneNumbersListThroughNames(self, input): #This gives all phone numbers that are 
+  def searchForPhoneNumbersListThroughNames(self, u_input): #This gives all phone numbers that are 
     outputNums = 0                                        #Similar to the input, If the input is: a
     arrayLength = len(self.nameWithPhones)                #For example: output will be: Adam, Ahmad,
     i = 0                                              #And even: Taher. But the priority to A at
     while i < arrayLength:                          #First
-      if input.lower() in self.nameWithPhones[i].lower():
+      if u_input.lower() in self.nameWithPhones[i].lower():
         print(self.nameWithPhones[i], self.nameWithPhones[i+1])
         outputNums += 1
       i += 2
     if outputNums == 0:
       print("Not exist")
-  def deleteFromNameWithPhonesUsingName(self, input):
-    # If input is exactly equal to one element, it will be deleted
+  def deleteFromNameWithPhonesUsingName(self, u_input):
+    # If u_input is exactly equal to one element, it will be deleted
     arrayLength = len(self.nameWithPhones)
     i = 0
     outputNumbers = 0
     while i < arrayLength:
-      if input.lower() == str(self.nameWithPhones[i]).lower():
+      if u_input.lower() == str(self.nameWithPhones[i]).lower():
         deletedName = self.nameWithPhones.pop(i)
         deletedPhone = self.nameWithPhones.pop(i)
         
@@ -104,6 +104,52 @@ class NameWithPhones:
       i += 2
     if outputNumbers == 0:
       print("No Such Element Exist")
+  def deleteFromNameWithPhonesUsingNameLikely(self, u_input):
+    # User enter input, if there is no such exact element, show the elements that look like the user
+    # Input with numbers, user choose the number for the element he wants to delete and it is done
+    arrayLength = len(self.nameWithPhones)
+    i = 0
+    while i < arrayLength:
+      if u_input.lower()  == str(self.nameWithPhones[i]).lower():
+        deletedName = self.nameWithPhones.pop(i)
+        deletedPhone = self.nameWithPhones.pop(i)
+        print(deletedName, deletedPhone, " Has Been Deleted Successfully!")
+        return
+      i += 2
+    i = 0
+    print("Available Phone Nubmers that look like your u_input",'"',u_input,'"' ,  "Choose One to Delete:(If you want to tdelete the first result, Choose 1 for example not the phone number itself)")
+
+    j = 1
+    similarResultsIndecies = []
+    while i < arrayLength:
+      if u_input.lower() in str(self.nameWithPhones[i]).lower():
+        
+        print(j, self.nameWithPhones[i])
+        j += 1
+      
+        similarResultsIndecies.append(i)
+      i += 2
+    print(similarResultsIndecies)
+
+    chosenNumber = int(input())
+    
+    l = 0
+    indeciesArrayLength = len(similarResultsIndecies)
+    if 1 <= chosenNumber and chosenNumber <= len(similarResultsIndecies):
+      selectedIndex = similarResultsIndecies[chosenNumber - 1]
+      deletedName = self.nameWithPhones.pop(selectedIndex)
+      deletedPhone = self.nameWithPhones.pop(selectedIndex)
+
+      print(deletedName, deletedPhone, "Has Been Deleted Successfully")
+      return
+    
+    print("No Such Element exist")
+    return
+    
+        
+          
+
+        
 
 
 newPhonesList = NameWithPhones()
@@ -115,20 +161,26 @@ newPhonesList.addNameWithPhone("Ali", 785326279)
 
 newPhonesList.printPhonesList()
 
-newPhonesList.searchForPhoneNumbersListThroughNames("a")
+# newPhonesList.searchForPhoneNumbersListThroughNames("a")
 
-input = "Ahmad"
+# u_input = "Ahmad"
 
-print(input.lower())
+# print(u_input.lower())
 
-print("After Using Delete Method")
+# print("After Using Delete Method")
 
-newPhonesList.deleteFromNameWithPhonesUsingName("Abdallah")
-print("Printed")
-newPhonesList.printPhonesList()
+# newPhonesList.deleteFromNameWithPhonesUsingName("Abdallah")
+# print("Printed")
+# newPhonesList.printPhonesList()
 
-print("After Using Delete Method Second Time")
+# print("After Using Delete Method Second Time")
 
-newPhonesList.deleteFromNameWithPhonesUsingName("Ahmad")
+# newPhonesList.deleteFromNameWithPhonesUsingName("Ahmad")
+
+# newPhonesList.printPhonesList()
+
+print("Test DeletedLikely method")
+
+newPhonesList.deleteFromNameWithPhonesUsingNameLikely("A")
 
 newPhonesList.printPhonesList()
