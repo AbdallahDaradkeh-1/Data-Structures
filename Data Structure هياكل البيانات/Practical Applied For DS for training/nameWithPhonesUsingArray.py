@@ -32,7 +32,6 @@ class NameWithPhones:
       # do we have any rule, it is a must the name should be at least one charachter and not duplicate
       if len(p_name) > 1 and not self.isNameExist(p_name):
         arrayLength = len(self.nameWithPhones)
-        print("Name :", p_name)
         # what about phone, it should be at least 10 numbers and maximum of 15
         if p_phone > 5 and len(str(p_phone)) < 15:
           
@@ -141,7 +140,43 @@ class NameWithPhones:
     
     print("No Such Element exist")
     return
-    
+  def changeValueForNames(self, u_input):
+    # We show user available elements that he can change
+    print("These are Names that you can change:")
+    arrayLength = len(self.nameWithPhones)
+    i = 0
+    j = 1
+    while i < arrayLength:
+      print(j, self.nameWithPhones[i])
+      j += 1
+      i += 2
+
+    # User Choose an element from those elements to change it's value
+    print("Please Choose The Number Of The Name You Want To Change:")
+    chosenNameNumber = int(input())
+
+    print("Please Enter The New Value")
+    try:
+      newNameValue = input()
+      if len(newNameValue) > 1:
+        self.nameWithPhones[chosenNameNumber - 1] = newNameValue
+    except ValueError:
+      print("Invalid Input!")
+
+
+    #*
+    # We show user available elements that he can change
+    # 
+    # User Choose an element from those elements to change it's value
+    # 
+    # User enter the new value for the element
+    # 
+    # Element value got updated
+    # 
+    #
+    # 
+    #  *#
+
         
           
 
@@ -155,7 +190,7 @@ newPhonesList.addNameWithPhone("Ahmad", 775333398)
 newPhonesList.addNameWithPhone("Ali", 785326279)
 # newPhonesList.addNameWithPhone("Ali", 78a26279)
 
-newPhonesList.printPhonesList()
+# newPhonesList.printPhonesList()
 
 # newPhonesList.searchForPhoneNumbersListThroughNames("a")
 
@@ -175,8 +210,14 @@ newPhonesList.printPhonesList()
 
 # newPhonesList.printPhonesList()
 
-print("Test DeletedLikely method")
+# print("Test DeletedLikely method")
 
-newPhonesList.deleteFromNameWithPhonesUsingNameLikely("A")
+# newPhonesList.deleteFromNameWithPhonesUsingNameLikely("A")
+
+# newPhonesList.printPhonesList()
+
+print("Testing Change Value Method")
+
+newPhonesList.changeValueForNames("Abdallah")
 
 newPhonesList.printPhonesList()
