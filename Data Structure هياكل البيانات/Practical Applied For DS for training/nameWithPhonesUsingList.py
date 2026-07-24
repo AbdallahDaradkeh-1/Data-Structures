@@ -146,7 +146,11 @@ class NameWithPhones:
     arrayLength = len(self.nameWithPhones)
     i = 0
     j = 1
+    nameList = []
+    indecisList = []
     while i < arrayLength:
+      nameList.append(self.nameWithPhones[i])
+      indecisList.append(i)
       print(j, self.nameWithPhones[i])
       j += 1
       i += 2
@@ -154,12 +158,17 @@ class NameWithPhones:
     # User Choose an element from those elements to change it's value
     print("Please Choose The Number Of The Name You Want To Change:")
     chosenNameNumber = int(input())
+    indecisListLength = len(indecisList)
+    if chosenNameNumber < indecisListLength or chosenNameNumber > indecisListLength:
+      print("Invalid Input")
+      return
+  
 
     print("Please Enter The New Value")
     try:
       newNameValue = input()
       if len(newNameValue) > 1:
-        self.nameWithPhones[chosenNameNumber - 1] = newNameValue
+        self.nameWithPhones[indecisList[chosenNameNumber - 1]] = newNameValue
     except ValueError:
       print("Invalid Input!")
 
