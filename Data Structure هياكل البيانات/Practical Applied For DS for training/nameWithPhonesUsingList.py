@@ -140,7 +140,7 @@ class NameWithPhones:
     
     print("No Such Element exist")
     return
-  def changeValueForNames(self, u_input):
+  def changeValueForNames(self):
     # We show user available elements that he can change
     print("These are Names that you can change:")
     arrayLength = len(self.nameWithPhones)
@@ -159,7 +159,7 @@ class NameWithPhones:
     print("Please Choose The Number Of The Name You Want To Change:")
     chosenNameNumber = int(input())
     indecisListLength = len(indecisList)
-    if chosenNameNumber < indecisListLength or chosenNameNumber > indecisListLength:
+    if chosenNameNumber < 0 or chosenNameNumber > indecisListLength:
       print("Invalid Input")
       return
   
@@ -173,32 +173,35 @@ class NameWithPhones:
       print("Invalid Input!")
 
   def changeValueForNumbers(self):
-    #We show user available Numbers that he can change
-    i = 1
-    arrayLength = len(self.nameWithPhones)
-    j = 1
-    if self.isEmpty():
-            print("List is Empty")
-            return
-    print("Please choose the Number of the Phone you want to change:")
-    # Array for phoneNumber indecies
-    phoneIndecis = []
-    while i < arrayLength: 
+    try:
+      #We show user available Numbers that he can change
+      i = 1
+      arrayLength = len(self.nameWithPhones)
+      j = 1
+      if self.isEmpty():
+              print("List is Empty")
+              return
+      print("Please choose the Number of the Phone you want to change:")
+      # Array for phoneNumber indecies
+      phoneIndecis = []
+      while i < arrayLength: 
+        
+        phoneIndecis.append(i)
+        print(j, self.nameWithPhones[i])
+        i += 2
+        j += 1
+
+      chosenPhoneNumber = int(input())
+
+      if chosenPhoneNumber < 0 or chosenPhoneNumber > len(phoneIndecis):
+        print("Invalid Input")
+        return
+      print("Enter the New Value")
+      newPhoneNumberValue = int(input())
       
-      phoneIndecis.append(i)
-      print(j, self.nameWithPhones[i])
-      i += 2
-      j += 1
-
-    chosenPhoneNumber = int(input())
-
-    if chosenPhoneNumber < 0 or chosenPhoneNumber > len(phoneIndecis):
-      print("Invalid Input")
-      return
-    print("Enter the New Value")
-    newPhoneNumberValue = int(input())
-    
-    self.nameWithPhones[phoneIndecis[chosenPhoneNumber - 1]] =  newPhoneNumberValue   
+      self.nameWithPhones[phoneIndecis[chosenPhoneNumber - 1]] =  newPhoneNumberValue  
+    except ValueError:
+      print("Invlaid Input") 
 
   def isEmpty(self):
       if len(self.nameWithPhones) == 0:
@@ -261,7 +264,7 @@ newPhonesList.addNameWithPhone("Ali", 785326279)
 
 print("Testing Change Value Method")
 
-# newPhonesList.changeValueForNames("Abdallah")
+# newPhonesList.changeValueForNames()
 
 newPhonesList.changeValueForNumbers()
 newPhonesList.printPhonesList()
