@@ -172,6 +172,40 @@ class NameWithPhones:
     except ValueError:
       print("Invalid Input!")
 
+  def changeValueForNumbers(self):
+    #We show user available Numbers that he can change
+    i = 1
+    arrayLength = len(self.nameWithPhones)
+    j = 1
+    if self.isEmpty():
+            print("List is Empty")
+            return
+    print("Please choose the Number of the Phone you want to change:")
+    # Array for phoneNumber indecies
+    phoneIndecis = []
+    while i < arrayLength: 
+      
+      phoneIndecis.append(i)
+      print(j, self.nameWithPhones[i])
+      i += 2
+      j += 1
+
+    chosenPhoneNumber = int(input())
+
+    if chosenPhoneNumber < 0 or chosenPhoneNumber > len(phoneIndecis):
+      print("Invalid Input")
+      return
+    print("Enter the New Value")
+    newPhoneNumberValue = int(input())
+    
+    self.nameWithPhones[phoneIndecis[chosenPhoneNumber - 1]] =  newPhoneNumberValue   
+
+  def isEmpty(self):
+      if len(self.nameWithPhones) == 0:
+        return True
+      else:
+        return False
+
 
     #*
     # We show user available elements that he can change
@@ -227,6 +261,7 @@ newPhonesList.addNameWithPhone("Ali", 785326279)
 
 print("Testing Change Value Method")
 
-newPhonesList.changeValueForNames("Abdallah")
+# newPhonesList.changeValueForNames("Abdallah")
 
+newPhonesList.changeValueForNumbers()
 newPhonesList.printPhonesList()
